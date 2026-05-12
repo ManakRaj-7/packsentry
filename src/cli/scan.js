@@ -33,6 +33,13 @@ if (!result.success) {
     process.exit(1);
 }
 
+const riskColor =
+    result.risk === "HIGH"
+        ? chalk.red.bold
+        : result.risk === "MEDIUM"
+        ? chalk.yellow.bold
+        : chalk.green.bold;
+
 console.log("\n");
 
 console.log(
@@ -50,7 +57,7 @@ console.log(
 
 console.log(
     chalk.green("Description: "),
-    result.description
+    result.description || "No description"
 );
 
 console.log(
@@ -70,14 +77,35 @@ console.log(
 
 console.log(
     chalk.green("Risk Level: "),
-    result.risk
+    riskColor(result.risk)
 );
 
-if (result.hasPostInstall) {
+if (result.typoCheck?.suspicious) {
 
     console.log(
-        chalk.red(
-            "WARNING: postinstall/preinstall script detected"
+        chalk.red.bold(
+            "\n⚠ POSSIBLE TYPOSQUATTING DETECTED"
+        )
+    );
+
+    console.log(
+        chalk.yellow(
+            `Did you mean: ${result.typoCheck.originalPackage}`
+        )
+    );
+}
+
+if (result.scriptCheck?.dangerous) {
+
+    console.log(
+        chalk.red.bold(
+            "\n⚠ WARNING: Dangerous install script detected"
+        )
+    );
+
+    console.log(
+        chalk.yellow(
+            `Detected Script: ${result.scriptCheck.script}`
         )
     );
 }

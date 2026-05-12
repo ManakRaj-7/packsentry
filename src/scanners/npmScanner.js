@@ -1,6 +1,16 @@
 import axios from "axios";
 
+import { detectTyposquatting }
+from "../analyzers/typoAnalyzer.js";
+
+import { analyzeScripts }
+from "../analyzers/scriptAnalyzer.js";
+
+import { calculateRisk }
+from "../analyzers/riskAnalyzer.js";
+
 export async function scanPackage(packageName) {
+
     try {
 
         const response = await axios.get(
@@ -9,30 +19,37 @@ export async function scanPackage(packageName) {
 
         const data = response.data;
 
-        const latestVersion = data["dist-tags"]?.latest;
+        const latestVersion =
+            data["dist-tags"]?.latest;
 
-        const weeklyDownloadsResponse = await axios.get(
-            `https://api.npmjs.org/downloads/point/last-week/${packageName}`
-        );
+        const weeklyDownloadsResponse =
+            await axios.get(
+                `https://api.npmjs.org/downloads/point/last-week/${packageName}`
+            );
 
-        const weeklyDownloads = weeklyDownloadsResponse.data.downloads;
+        const weeklyDownloads =
+            weeklyDownloadsResponse.data.downloads;
 
-        const latestPackageData = data.versions[latestVersion];
+        const latestPackageData =
+            data.versions[latestVersion];
 
-        const scripts = latestPackageData.scripts || {};
+        const scripts =
+            latestPackageData.scripts || {};
 
-        const hasPostInstall =
-            scripts.postinstall || scripts.preinstall;
+        const typoCheck =
+            detectTyposquatting(packageName);
 
-        let risk = "LOW";
+        const scriptCheck =
+            analyzeScripts(scripts);
 
-        if (weeklyDownloads < 1000) {
-            risk = "MEDIUM";
-        }
-
-        if (hasPostInstall) {
-            risk = "HIGH";
-        }
+        const risk =
+            calculateRisk({
+                weeklyDownloads,
+                hasDangerousScript:
+                    scriptCheck.dangerous,
+                typosquattingDetected:
+                    typoCheck.suspicious
+            });
 
         return {
             success: true,
@@ -42,7 +59,8 @@ export async function scanPackage(packageName) {
             weeklyDownloads,
             modified: data.time.modified,
             risk,
-            hasPostInstall: !!hasPostInstall
+            typoCheck,
+            scriptCheck
         };
 
     } catch (error) {
@@ -51,6 +69,5 @@ export async function scanPackage(packageName) {
             success: false,
             error: "Package not found"
         };
-
     }
 }
