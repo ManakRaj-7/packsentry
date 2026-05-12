@@ -1,6 +1,6 @@
 {
   "name": "packsentry",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Dependency security and package intelligence tool for npm",
   "main": "src/index.js",
   "bin": {
