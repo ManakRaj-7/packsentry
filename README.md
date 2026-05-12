@@ -1,150 +1,105 @@
 # PackSentry
 
-> Trust your dependencies.
+> npm package security scanner and dependency threat analyzer.
 
-PackSentry is a dependency security and package intelligence CLI for the npm ecosystem.
-
-Analyze npm packages instantly from your terminal and detect:
-- suspicious install scripts
-- risky packages
-- ecosystem trust signals
-- package popularity
-- maintenance activity
+PackSentry helps developers identify:
+- typosquatting attacks
+- suspicious npm packages
+- dangerous install scripts
+- risky dependencies
+- low-trust packages
 
 ---
 
-## Installation
+# Features
 
-### Run with NPX
+✅ npm package scanning  
+✅ Risk scoring engine  
+✅ Typosquatting detection  
+✅ Dangerous script detection  
+✅ Weekly download analysis  
+✅ Dependency trust signals  
+✅ Fast CLI workflow
 
-```bash
-npx packsentry express
-```
+---
 
-### Global Install
+# Installation
 
-```bash
 npm install -g packsentry
-```
 
 ---
 
-## Usage
+# Usage
 
-### Scan a Package
-
-```bash
 packsentry express
-```
 
-### Scan Another Package
-
-```bash
-packsentry lodash
-```
+packsentry axois
 
 ---
 
-## Example Output
+# Example Safe Package
 
-```txt
-PACKSENTRY REPORT
-----------------------------
-
-Package: express
-Description: Fast, unopinionated, minimalist web framework
-Latest Version: 5.2.1
-Weekly Downloads: 99678203
-Last Modified: 2026-05-11T18:50:00.386Z
-Risk Level: LOW
-```
+[show express output]
 
 ---
 
-## Features
+# Example Malicious / Suspicious Package
 
-- npm package scanning
-- Weekly download analysis
-- Risk level detection
-- Suspicious install script detection
-- Fast npm registry analysis
-- CLI-based workflow
+[show axois detection]
 
 ---
 
-## Risk Levels
+# Risk Levels
 
-| Level | Meaning |
-|---|---|
-| LOW | Trusted and widely used |
-| MEDIUM | Some caution recommended |
-| HIGH | Potentially suspicious package |
+LOW
+MEDIUM
+HIGH
 
 ---
 
-## Current Checks
+# Security Checks
 
 PackSentry currently analyzes:
 
-- npm package metadata
-- weekly downloads
-- maintenance activity
+- package popularity
 - install scripts
-- ecosystem trust indicators
+- typo similarity
+- package metadata
+- ecosystem trust signals
 
 ---
 
-## Tech Stack
+# Roadmap
+
+## v1.1
+- Typosquatting detection
+- Improved risk engine
+
+## v1.2
+- GitHub reputation analysis
+- Maintainer trust scoring
+
+## v1.3
+- JSON output support
+- CI/CD integration
+
+## v2.0
+- AI-powered dependency auditing
+- VS Code extension
+
+---
+
+# Tech Stack
 
 - Node.js
 - ES Modules
 - Axios
 - Chalk
 - Ora
+- Jaro-Winkler similarity
 
 ---
 
-## Installation Example
-
-```bash
-npx packsentry express
-```
-
----
-
-## Contributing
-
-Contributions, issues, and feature requests are welcome.
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a pull request
-
----
-
-## Links
-
-- GitHub Repository:
-  https://github.com/ManakRaj-7/packsentry
-
-- npm Package:
-  https://www.npmjs.com/package/packsentry
-
----
-
-## License
-
-MIT
-
----
-
-## Author
+# Author
 
 Manak Raj
-
----
-
-## Vision
-
-PackSentry aims to make the npm ecosystem safer, more transparent, and easier to trust for developers around the world.
