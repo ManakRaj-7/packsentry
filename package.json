@@ -1,10 +1,10 @@
 {
   "name": "packsentry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dependency security and package intelligence tool for npm",
   "main": "src/index.js",
   "bin": {
-  "packsentry": "src/cli/scan.js"
+    "packsentry": "src/cli/scan.js"
   },
   "type": "module",
   "scripts": {
@@ -20,13 +20,13 @@
   "author": "Manak Raj",
   "license": "MIT",
   "repository": {
-  "type": "git",
-  "url": "https://github.com/ManakRaj-7/packsentry.git"
-},
-"homepage": "https://github.com/ManakRaj-7/packsentry",
-"bugs": {
-  "url": "https://github.com/ManakRaj-7/packsentry/issues"
-},
+    "type": "git",
+    "url": "https://github.com/ManakRaj-7/packsentry.git"
+  },
+  "homepage": "https://github.com/ManakRaj-7/packsentry",
+  "bugs": {
+    "url": "https://github.com/ManakRaj-7/packsentry/issues"
+  },
   "dependencies": {
     "axios": "^1.16.0",
     "chalk": "^5.6.2",
