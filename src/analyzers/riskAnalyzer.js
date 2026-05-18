@@ -6,7 +6,7 @@ export function calculateRisk(data) {
         riskScore += 2;
     }
 
-    if (data.hasPostInstall) {
+    if (data.hasDangerousScript) {
         riskScore += 4;
     }
 
@@ -16,6 +16,10 @@ export function calculateRisk(data) {
 
     if (data.scriptCheck?.dangerous) {
         riskScore += 4;
+    }
+
+    if (data.ageCheck?.suspicious) {
+        riskScore += 3;
     }
 
     if (riskScore >= 7) {

@@ -95,6 +95,21 @@ if (result.typoCheck?.suspicious) {
     );
 }
 
+if (result.ageCheck?.suspicious) {
+
+    console.log(
+        chalk.yellow.bold(
+            "\n⚠ Newly published package detected"
+        )
+    );
+
+    console.log(
+        chalk.yellow(
+            `Package Age: ${result.ageCheck.ageDays} days`
+        )
+    );
+}
+
 if (result.scriptCheck?.dangerous) {
 
     console.log(

@@ -1,13 +1,16 @@
 import axios from "axios";
 
 import { detectTyposquatting }
-from "../analyzers/typoAnalyzer.js";
+    from "../analyzers/typoAnalyzer.js";
 
 import { analyzeScripts }
-from "../analyzers/scriptAnalyzer.js";
+    from "../analyzers/scriptAnalyzer.js";
 
 import { calculateRisk }
-from "../analyzers/riskAnalyzer.js";
+    from "../analyzers/riskAnalyzer.js";
+
+import { analyzePackageAge }
+    from "../analyzers/ageAnalyzer.js";
 
 export async function scanPackage(packageName) {
 
@@ -33,6 +36,11 @@ export async function scanPackage(packageName) {
         const latestPackageData =
             data.versions[latestVersion];
 
+        const ageCheck =
+            analyzePackageAge(
+                data.time.created
+            );
+
         const scripts =
             latestPackageData.scripts || {};
 
@@ -48,7 +56,8 @@ export async function scanPackage(packageName) {
                 hasDangerousScript:
                     scriptCheck.dangerous,
                 typosquattingDetected:
-                    typoCheck.suspicious
+                    typoCheck.suspicious,
+                ageCheck
             });
 
         return {
@@ -57,10 +66,12 @@ export async function scanPackage(packageName) {
             description: data.description,
             latestVersion,
             weeklyDownloads,
+            created: data.time.created,
             modified: data.time.modified,
             risk,
             typoCheck,
-            scriptCheck
+            scriptCheck,
+            ageCheck
         };
 
     } catch (error) {
