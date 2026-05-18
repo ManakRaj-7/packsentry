@@ -1,35 +1,38 @@
 # PackSentry
 
-PackSentry is a security-focused npm package analysis tool designed to help developers identify suspicious, risky, and potentially malicious dependencies before installing them.
+PackSentry is a security-focused dependency analysis tool for the npm ecosystem.
 
-It provides lightweight dependency intelligence directly from the command line.
+It helps developers identify suspicious, risky, low-trust, and potentially malicious npm packages before installation.
+
+PackSentry performs lightweight supply-chain analysis directly from the command line with zero configuration.
 
 ---
 
-# Features
+## Features
 
-- npm package security scanning
+- Package risk analysis
 - Typosquatting detection
+- Known malicious package detection
 - Dangerous install script analysis
-- Dependency trust analysis
+- Suspicious shell command detection
+- Dependency trust evaluation
 - Package popularity analysis
 - Package age analysis
-- Risk scoring engine
-- Known malicious package detection
+- Security scoring engine
 - Local project dependency scanning
 - Fast CLI workflow
 
 ---
 
-# Installation
+## Installation
 
-## Global Installation
+### Global Installation
 
 ```bash
 npm install -g packsentry
 ```
 
-## Using NPX
+### Using NPX
 
 ```bash
 npx packsentry express
@@ -37,21 +40,21 @@ npx packsentry express
 
 ---
 
-# Usage
+## Usage
 
-## Scan a Package
+### Analyze a Package
 
 ```bash
 packsentry express
 ```
 
-## Detect Suspicious Packages
+### Detect Suspicious Packages
 
 ```bash
 packsentry axois
 ```
 
-## Scan Local Project Dependencies
+### Scan Local Project Dependencies
 
 ```bash
 packsentry scan .
@@ -59,9 +62,9 @@ packsentry scan .
 
 ---
 
-# Example Output
+## Example Output
 
-## Trusted Package
+### Trusted Package
 
 ```txt
 PACKSENTRY REPORT
@@ -77,9 +80,7 @@ Risk Level: LOW
 Security Score: 95/100
 ```
 
----
-
-## Suspicious Package Detection
+### Suspicious Package Detection
 
 ```txt
 PACKSENTRY REPORT
@@ -100,7 +101,7 @@ Did you mean: axios
 
 ---
 
-# Security Analysis
+## Security Checks
 
 PackSentry currently analyzes:
 
@@ -109,48 +110,36 @@ PackSentry currently analyzes:
 - suspicious shell commands
 - package popularity
 - package metadata
-- ecosystem trust signals
 - package age
-- known malicious package indicators
+- ecosystem trust signals
+- malicious package indicators
 - dependency trust signals
 
 ---
 
-# Risk Levels
+## Risk Levels
 
 | Risk Level | Description                                 |
 | ---------- | ------------------------------------------- |
 | LOW        | Trusted and widely used package             |
-| MEDIUM     | Some caution recommended                    |
+| MEDIUM     | Caution recommended                         |
 | HIGH       | Potentially suspicious or malicious package |
 
 ---
 
-# Project Scanning
+## Local Project Scanning
 
-PackSentry can scan dependencies from a local Node.js project.
+PackSentry can analyze dependencies from a local Node.js project.
 
 ```bash
 packsentry scan .
 ```
 
-This helps developers audit dependencies before deployment or installation.
+This helps developers audit dependencies before installation or deployment.
 
 ---
 
-# Tech Stack
-
-- Node.js
-- ES Modules
-- Axios
-- Chalk
-- Ora
-- Jaro-Winkler
-- CLI Table
-
----
-
-# Architecture
+## Architecture
 
 ```txt
 src/
@@ -163,36 +152,32 @@ src/
 
 ---
 
-# Version
+## Tech Stack
 
-Current Release:
-
-```txt
-v1.3.0
-```
+- Node.js
+- ES Modules
+- Axios
+- Chalk
+- Ora
+- Jaro-Winkler
+- CLI Table
 
 ---
 
-# Roadmap
-
 ## Planned Features
 
-- dependency tree scanning
-- GitHub reputation analysis
+- dependency tree analysis
+- lockfile analysis
+- GitHub repository reputation analysis
 - maintainer trust scoring
 - JSON output mode
 - CI/CD integration
-- lockfile analysis
 - advanced malware heuristics
 - VS Code extension
 
 ---
 
-# Contributing
-
-Contributions, security improvements, and pull requests are welcome.
-
-## Development Setup
+## Development
 
 ```bash
 git clone https://github.com/ManakRaj-7/packsentry.git
@@ -204,13 +189,13 @@ npm install
 
 ---
 
-# License
+## License
 
-MIT License
+MIT
 
 ---
 
-# Author
+## Author
 
 Manak Raj
 
@@ -222,6 +207,6 @@ npm:
 
 ---
 
-# Purpose
+## Purpose
 
-PackSentry was created to make the npm ecosystem safer, more transparent, and easier to trust for developers worldwide.
+PackSentry was created to improve transparency and security within the npm ecosystem by helping developers make safer dependency decisions.
