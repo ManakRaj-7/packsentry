@@ -3,7 +3,11 @@
 import chalk from "chalk";
 import ora from "ora";
 
-import { scanPackage } from "../scanners/npmScanner.js";
+import { scanPackage }
+    from "../scanners/npmScanner.js";
+
+import { scanLocalProject }
+    from "../scanners/projectScanner.js";
 
 const packageName = process.argv[2];
 
@@ -14,6 +18,28 @@ if (!packageName) {
     );
 
     process.exit(1);
+}
+
+if (packageName === "scan") {
+
+    const deps =
+        scanLocalProject();
+
+    console.log(
+        chalk.cyan.bold(
+            "\nLOCAL PROJECT DEPENDENCIES\n"
+        )
+    );
+
+    deps.forEach(dep => {
+
+        console.log(
+            chalk.green("• "),
+            dep
+        );
+    });
+
+    process.exit(0);
 }
 
 const spinner = ora(

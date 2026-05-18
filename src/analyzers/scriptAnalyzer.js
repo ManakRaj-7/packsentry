@@ -1,22 +1,32 @@
+const dangerousPatterns = [
+
+    "curl",
+    "wget",
+    "powershell",
+    "bash",
+    "eval",
+    "child_process",
+    "chmod",
+    "nc ",
+    "rm -rf"
+
+];
+
 export function analyzeScripts(scripts = {}) {
 
-    const dangerousScripts = [
-        "postinstall",
-        "preinstall"
-    ];
+    const scriptText =
+        JSON.stringify(scripts).toLowerCase();
 
-    for (const script of dangerousScripts) {
-
-        if (scripts[script]) {
-
-            return {
-                dangerous: true,
-                script
-            };
-        }
-    }
+    const foundPatterns =
+        dangerousPatterns.filter(pattern =>
+            scriptText.includes(pattern)
+        );
 
     return {
-        dangerous: false
+
+        dangerous:
+            foundPatterns.length > 0,
+
+        foundPatterns
     };
 }
