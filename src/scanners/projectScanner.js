@@ -10,8 +10,11 @@ export function scanLocalProject() {
             )
         );
 
-    const dependencies =
-        packageJson.dependencies || {};
+    const dependencies = {
 
-    return Object.keys(dependencies);
+        ...packageJson.dependencies,
+        ...packageJson.devDependencies
+    };
+
+    return Object.keys(dependencies || {});
 }
