@@ -1,6 +1,6 @@
 {
   "name": "packsentry",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "npm dependency security scanner and package threat analysis tool",
   "main": "src/index.js",
   "type": "module",
